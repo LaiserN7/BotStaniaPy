@@ -7,6 +7,8 @@ app = FastAPI()
 logging.getLogger().setLevel(logging.INFO)
 # token = os.environ['BOT_TOKEN']
 token = '5699281086:AAHjGw9zfFBe0PFIuGmAk7poTTczcWGfC4Y'
+logging.info(f"current env token is : {os.environ['BOT_TOKEN']}")
+
 # cur_url = os.environ['URL']
 
 logging.info(f"current token is : {token}")
