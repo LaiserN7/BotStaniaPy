@@ -36,7 +36,7 @@ async def root():
 async def bot_webhook(req: Request):
     logging.info("req")
     logging.info(req)
-    body = req.json()
+    body = await req.json()
     logging.info("body")
     logging.info(body)
     # print(request.headers)
