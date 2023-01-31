@@ -33,7 +33,7 @@ async def root():
 @app.post("/update")
 async def bot_webhook(update: dict):
     print(update)
-    await bot.client.process_new_updates(dict)
+    # await bot.client.process_new_updates(dict)
 
 # bot.client.remove_webhook()
 # bot.client.set_webhook(f'{cur_url}update/ + {token}')
