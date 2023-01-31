@@ -1,13 +1,41 @@
 from fastapi import FastAPI
+from infrastructure import Bot
+import os
+import logging
 
 app = FastAPI()
+logging.getLogger().setLevel(logging.INFO)
+token = os.environ['BOT_TOKEN']
+url = os.environ['URL']
+#logging.info(f"current token is : {os.environ['BOT_TOKEN']}")
+bot = Bot(api_token=token)
+
+
+@bot.client.message_handler(commands=['start'])
+def url(message):
+    logging.info("kek")
+    logging.info(message)
+    bot.client.send_message(message.from_user.id, "Pic")
+
+
+@app.on_event("startup")
+async def on_startup():
+    logging.info("Starting")
 
 
 @app.get("/")
 async def root():
-    return {"message": "Hello World"}
+    return {"message": f"Hello {bot.client.token}"}
 
 
-@app.get("/hello/{name}")
-async def say_hello(name: str):
-    return {"message": f"Hello {name}"}
+@app.post("update")
+async def bot_webhook(update: dict):
+    await bot.client.process_new_updates(dict)
+
+bot.remove_webhook()
+bot.set_webhook(url + token)
+
+# @app.get("/hello/{name}")
+# async def say_hello(name: str):
+#     return {"message": f"Hello {name}"}
+# bot.client.polling(none_stop=True, interval=0)
