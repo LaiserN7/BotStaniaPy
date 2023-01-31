@@ -6,7 +6,7 @@ import logging
 app = FastAPI()
 logging.getLogger().setLevel(logging.INFO)
 token = os.environ['BOT_TOKEN']
-url = os.environ['URL']
+cur_url = os.environ['URL']
 #logging.info(f"current token is : {os.environ['BOT_TOKEN']}")
 bot = Bot(api_token=token)
 
@@ -33,7 +33,7 @@ async def bot_webhook(update: dict):
     await bot.client.process_new_updates(dict)
 
 bot.client.remove_webhook()
-bot.client.set_webhook(f'{url} + {token}')
+bot.client.set_webhook(f'{cur_url} + {token}')
 
 # @app.get("/hello/{name}")
 # async def say_hello(name: str):
