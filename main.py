@@ -32,8 +32,8 @@ async def root():
 async def bot_webhook(update: dict):
     await bot.client.process_new_updates(dict)
 
-bot.remove_webhook()
-bot.set_webhook(url + token)
+bot.client.remove_webhook()
+bot.client.set_webhook(url + token)
 
 # @app.get("/hello/{name}")
 # async def say_hello(name: str):
