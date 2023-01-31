@@ -34,9 +34,11 @@ async def root():
 
 @app.post("/update")
 async def bot_webhook(req: Request):
-    logging.log(req)
+    logging.info("req")
+    logging.info(req)
     body = requests.json()
-    logging.log(body)
+    logging.info("body")
+    logging.info(body)
     # print(request.headers)
     # if request.headers.get('content-type') == 'application/json':
     #     json_string = request.body()
@@ -45,7 +47,8 @@ async def bot_webhook(req: Request):
     #     bot.client.process_new_messages(json_string)
     #     return ''
     update = telebot.types.Update.de_json(body)
-    logging.log(update)
+    logging.info("update")
+    logging.info(update)
     await bot.client.process_new_updates(update)
 
 # bot.client.remove_webhook()
