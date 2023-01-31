@@ -49,7 +49,7 @@ async def bot_webhook(req: Request):
     update = telebot.types.Update.de_json(body)
     logging.info("update")
     logging.info(update)
-    await bot.client.process_new_updates([update])
+    bot.client.process_new_updates([update])
 
 # bot.client.remove_webhook()
 # bot.client.set_webhook(f'{cur_url}update/ + {token}')
