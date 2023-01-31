@@ -30,7 +30,7 @@ async def root():
     return {"message": f"Hello"}
 
 
-@app.post("update")
+@app.post("/update")
 async def bot_webhook(update: dict):
     print(update)
     await bot.client.process_new_updates(dict)
