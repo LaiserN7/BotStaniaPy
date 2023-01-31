@@ -1,7 +1,9 @@
-from fastapi import FastAPI
+import requests
+from fastapi import FastAPI, Request
 from infrastructure import Bot
 import os
 import logging
+import telebot
 
 app = FastAPI()
 logging.getLogger().setLevel(logging.INFO)
@@ -31,8 +33,15 @@ async def root():
 
 
 @app.post("/update")
-async def bot_webhook(update: dict):
-    print(update)
+async def bot_webhook(request: Request):
+    print(request.headers)
+    if Request.headers.get('content-type') == 'application/json':
+        json_string = Request.get_data().decode('utf-8')
+        update = telebot.types.Update.de_json(json_string)
+        logging.info(update.message)
+        bot.client.process_new_messages([update.message])
+        return ''
+
     # await bot.client.process_new_updates(dict)
 
 # bot.client.remove_webhook()
