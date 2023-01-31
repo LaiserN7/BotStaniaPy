@@ -7,10 +7,10 @@ app = FastAPI()
 logging.getLogger().setLevel(logging.INFO)
 token = os.environ['BOT_TOKEN']
 cur_url = os.environ['URL']
-#logging.info(f"current token is : {os.environ['BOT_TOKEN']}")
+logging.info(f"current token is : {os.environ['BOT_TOKEN']}")
 bot = Bot(api_token=token)
-
-
+print("via print")
+print(f"current token is : {os.environ['BOT_TOKEN']}")
 @bot.client.message_handler(commands=['start'])
 def url(message):
     logging.info("kek")
