@@ -35,8 +35,8 @@ async def root():
 @app.post("/update")
 async def bot_webhook(request: Request):
     print(request.headers)
-    if Request.headers.get('content-type') == 'application/json':
-        json_string = Request.get_data().decode('utf-8')
+    if request.headers.get('content-type') == 'application/json':
+        json_string = request.body().decode('utf-8')
         update = telebot.types.Update.de_json(json_string)
         logging.info(update.message)
         bot.client.process_new_messages([update.message])
