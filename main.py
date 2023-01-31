@@ -33,7 +33,7 @@ async def bot_webhook(update: dict):
     await bot.client.process_new_updates(dict)
 
 bot.client.remove_webhook()
-bot.client.set_webhook(f'{cur_url} + {token}')
+bot.client.set_webhook(f'{cur_url}update/ + {token}')
 
 # @app.get("/hello/{name}")
 # async def say_hello(name: str):
