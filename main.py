@@ -25,15 +25,16 @@ async def on_startup():
 
 @app.get("/")
 async def root():
-    return {"message": f"Hello {bot.client.token}"}
+    return {"message": f"Hello"}
 
 
 @app.post("update")
 async def bot_webhook(update: dict):
+    print(update)
     await bot.client.process_new_updates(dict)
 
-bot.client.remove_webhook()
-bot.client.set_webhook(f'{cur_url}update/ + {token}')
+# bot.client.remove_webhook()
+# bot.client.set_webhook(f'{cur_url}update/ + {token}')
 
 # @app.get("/hello/{name}")
 # async def say_hello(name: str):
